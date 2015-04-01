@@ -1,0 +1,40 @@
+package com.company;
+
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
+public class MyDate {
+    private String dateFormat;
+    private String timeFormat;
+    private String strDate;
+    private int d[] = new int[2];
+    private int t[] = new int[3];
+
+
+    public MyDate() {
+        this.dateFormat = "dd/MM";
+        this.timeFormat = "HH:mm:ss";
+        this.strDate = "";
+        Date D = new Date();
+        DateFormat sdf = new SimpleDateFormat(dateFormat + " " + timeFormat);
+        strDate += sdf.format(D);
+    }
+
+    public String getStrDate() {
+        return strDate;
+    }
+
+    public void split() {
+        String[] SysDate = strDate.split(" ");
+        String[] date = SysDate[0].split("/");
+        String[] time = SysDate[1].split(":");
+        d[0] = Integer.parseInt(date[0]); // Day
+        d[1] = Integer.parseInt(date[1]); // Month
+        t[0] = Integer.parseInt(time[0]); // Hours
+        t[1] = Integer.parseInt(time[1]); // Minutes
+        t[2] = Integer.parseInt(time[2]); // Seconds
+    }
+
+
+}
