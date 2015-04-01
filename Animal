@@ -1,0 +1,39 @@
+package com.company;
+
+import java.io.Serializable;
+
+public abstract class Animal implements Serializable {
+
+    protected int hunger;
+    protected int health;
+    protected int happy;
+    protected int energy;
+    protected int fun;
+    protected int age;
+    protected int hygiene;
+    protected int love;
+    protected int toilet;
+    protected String name;
+    protected String DOB;
+    protected boolean isSick;
+
+    protected abstract void die();
+
+    protected abstract void feed();
+
+    protected abstract void sleep();
+
+    protected abstract void play(int time);
+
+    protected abstract boolean isSick();
+
+    protected abstract void cure();
+
+    protected abstract void giveBath();
+
+    protected abstract void poop();
+
+    protected abstract void speak();
+
+    protected abstract void evolve();
+}
