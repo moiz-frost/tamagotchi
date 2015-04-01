@@ -1,0 +1,159 @@
+package com.company;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+//@XmlRootElement
+public class MyPet extends Animal {
+
+    private int rand;
+
+    public MyPet() {
+    }
+
+    public MyPet(String name, String DOB) {
+        this.name = name;
+        this.DOB = DOB;
+        this.hygiene = 80;
+        this.energy = 40;
+        this.hunger = 80;
+    }
+
+    @Override
+    protected void die() {
+        System.out.println("You didn't take care of your pet, well done \n YOUR PET DIED A PAINFUL DEATH");
+//        System.out.println("Do you want another pet?");
+//        System.exit(0);
+    }
+
+    @Override
+    protected void feed() {
+        hunger -= Demo.rand(10, 70);
+        System.out.println("\nNom Nom Nom");
+
+        if (hunger > 50) {
+            System.out.println("Feed me more");
+        }
+        if (hunger <= 20) {
+            System.out.println("I am nearly full");
+            toilet += 10;
+        }
+        if (hunger <= 10) {
+            System.out.println("Almost full.");
+            toilet += 20;
+        }
+        if (hunger == 0) {
+            System.out.println("I am stuffed , Can't eat anymore");
+            toilet += 40;
+        }
+    }
+
+    @Override
+    protected void sleep() {
+        System.out.println("I am sleeping now");
+        this.energy += Demo.rand(30, 60);
+        this.hunger = 10;
+        try {
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 4 + i; j++) {
+                    System.out.print("Zz... ");
+                    Thread.sleep((int) Demo.rand(200, 800));
+                }
+                System.out.println();
+            }
+        } catch (InterruptedException e) {
+            System.out.println("Interruption!! " + e);
+        } finally {
+            try {
+                System.out.print("Ya");
+                for (int i = 0; i < 7; i++) {
+                    System.out.print("a");
+                    Thread.sleep(250);
+                }
+                System.out.print("wn !!!!!");
+                Thread.sleep(150);
+                rand = (int) Demo.rand(0, 4);
+                switch (rand) {
+                    case 0:
+                        System.out.println("I'm hungry, please feed me !");
+                        break;
+                    case 1:
+                        System.out.println("I want to play !");
+                        break;
+                    case 2:
+                        System.out.println("I still feel sleepy.");
+                        break;
+                    case 3:
+                        System.out.println("Can u give me a bathing ?");
+                        break;
+                    case 4:
+                        System.out.println("Stewbid Berson.");
+                        break;
+                }
+
+            } catch (InterruptedException e) {
+                System.out.println("Interruption!! " + e);
+            }
+        }
+    }
+
+    @Override
+    protected void play(int time) {
+        hygiene -= Demo.rand(10, 30);
+        hunger += Demo.rand(20, 25);
+        fun += Demo.rand(20, 40);
+        System.out.println("I like playing");
+        System.out.println("I want to play more");
+    }
+
+    @Override
+    protected boolean isSick() {
+        isSick = (((health <= 30) && (hunger >= 75) && (hygiene > 70) && (energy < 30)) ? true : false);
+        return isSick;
+    }
+
+    @Override
+    protected void poop() {
+        toilet = 0;
+        hunger += Demo.rand(15, 40);
+    }
+
+    @Override
+    protected void speak() {
+        System.out.println("RAAAAAAAAWR !!!!!");
+    }
+
+    @Override
+    protected void evolve() {
+
+    }
+
+    @Override
+    protected void giveBath() {
+        hygiene += Demo.rand(50, 100);
+        energy += Demo.rand(10, 30);
+        happy += Demo.rand(15, 30);
+    }
+
+    @Override
+    protected void cure() {
+    }
+
+    public void showStats() {
+        System.out.println("----------");
+        System.out.println("name =" + name);
+        System.out.println("DOB =" + DOB);
+        System.out.println("age =" + age);
+        System.out.println("health =" + health);
+        System.out.println("isSick? =" + isSick);
+        System.out.println("energy =" + energy);
+        System.out.println("happy =" + happy);
+        System.out.println("love =" + love);
+        System.out.println("fun =" + fun);
+        System.out.println("hunger =" + hunger);
+        System.out.println("hygiene =" + hygiene);
+        System.out.println("toilet =" + toilet);
+        System.out.println("----------");
+    }
+}
